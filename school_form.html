@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>School Registration | ERUdite</title>
+  <link rel="stylesheet" href="erudite.css" />
+  <style>
+    .form-wrapper { min-height: 100vh; display: flex; justify-content: center; align-items: center; background: linear-gradient(135deg, #06b6d4, #1e3a8a, #c084fc, #06b6d4); }
+    .form-container { background-color: #fff; padding: 40px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); border-radius: 12px; width: 100%; max-width: 500px; text-align: center; }
+    .form-container h2 { margin-bottom: 20px; color: #1e3a8a; }
+    .form-container form input, .form-container form button { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #ccc; }
+    .form-container form button { background-color: #1e3a8a; color: #fff; border: none; font-weight: bold; }
+    .form-container form button:hover { background-color: #32506b; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <div class="form-wrapper">
+    <div class="form-container">
+      <h2>School Registration</h2>
+      <form id="schoolForm">
+        <input type="text" id="schoolName" placeholder="School Name" required />
+        <input type="email" id="schoolEmail" placeholder="School Email" required />
+        <input type="tel" id="schoolPhone" placeholder="Contact Number" required />
+        <input type="text" id="schoolAddress" placeholder="Address" required />
+        <input type="password" id="schoolPassword" placeholder="Create Password" required />
+        <button type="submit">Register School</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("schoolForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("schoolName").value.trim();
+      const email = document.getElementById("schoolEmail").value.trim();
+      const phone = document.getElementById("schoolPhone").value.trim();
+      const address = document.getElementById("schoolAddress").value.trim();
+      const password = document.getElementById("schoolPassword").value.trim();
+
+      if (name === "" || email === "" || phone === "" || address === "" || password === "") {
+        alert("Please fill all fields.");
+        return;
+      }
+      if (!validateEmail(email)) {
+        alert("Invalid email format.");
+        return;
+      }
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters.");
+        return;
+      }
+
+      alert(`School "${name}" Registered Successfully!`);
+      this.reset();
+    });
+
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email.toLowerCase());
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Institutes Registration | ERUdite</title>
+  <link rel="stylesheet" href="erudite.css" />
+  <style>
+    /* Additional styles specific to this page */
+    .form-wrapper {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #06b6d4, #1e3a8a, #c084fc, #06b6d4);
+    }
+    .form-container {
+      background-color: #fff;
+      padding: 40px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+    }
+    .form-container h2 {
+      margin-bottom: 20px;
+      color: #1e3a8a;
+    }
+    .form-container form input,
+    .form-container form textarea,
+    .form-container form button {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .form-container form button {
+      background-color: #1e3a8a;
+      color: #fff;
+      border: none;
+      font-weight: bold;
+    }
+    .form-container form button:hover {
+      background-color: #32506b;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-wrapper">
+    <div class="form-container">
+      <h2>Institute Registration</h2>
+      <form id="instituteForm">
+        <input type="text" id="instituteName" placeholder="Institute Name" required />
+        <input type="email" id="instituteEmail" placeholder="Institute Email" required />
+        <input type="text" id="contactNumber" placeholder="Contact Number" required />
+        <textarea id="instituteAddress" rows="4" placeholder="Institute Address" required></textarea>
+        <input type="password" id="institutePassword" placeholder="Create Password" required />
+        <button type="submit">Register Institute</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Basic Validation & Submit
+    document.getElementById("instituteForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("instituteName").value.trim();
+      const email = document.getElementById("instituteEmail").value.trim();
+      const contact = document.getElementById("contactNumber").value.trim();
+      const address = document.getElementById("instituteAddress").value.trim();
+      const password = document.getElementById("institutePassword").value.trim();
+
+      if (name === "" || email === "" || contact === "" || address === "" || password === "") {
+        alert("Please fill all fields.");
+        return;
+      }
+      if (!validateEmail(email)) {
+        alert("Invalid email format.");
+        return;
+      }
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters.");
+        return;
+      }
+
+      alert(`Institute "${name}" Registered Successfully!`);
+      this.reset();
+    });
+
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email.toLowerCase());
+    }
+  </script>
+
+</body>
+</html>
