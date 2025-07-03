@@ -1,0 +1,2 @@
+# Erudite
+website for students 
